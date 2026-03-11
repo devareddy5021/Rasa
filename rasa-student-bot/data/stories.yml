@@ -1,0 +1,61 @@
+# ============================================================
+# RASA STORIES
+# ============================================================
+version: "3.1"
+
+stories:
+
+  - story: greet and help
+    steps:
+      - intent: greet
+      - action: utter_greet
+
+  - story: ask for help
+    steps:
+      - intent: help
+      - action: utter_help
+
+  - story: show students
+    steps:
+      - intent: show_students
+      - action: action_show_students      # sends result + buttons itself
+
+  - story: show courses
+    steps:
+      - intent: show_courses
+      - action: action_show_courses       # sends result + buttons itself
+
+  - story: add student full flow
+    steps:
+      - intent: add_student
+      - action: add_student_form
+      - active_loop: add_student_form
+      - active_loop: null
+      - slot_was_set:
+          - requested_slot: null
+      - action: action_add_student        # saves + sends buttons itself
+
+  - story: add course full flow
+    steps:
+      - intent: add_course
+      - action: add_course_form
+      - active_loop: add_course_form
+      - active_loop: null
+      - slot_was_set:
+          - requested_slot: null
+      - action: action_add_course         # saves + sends buttons itself
+
+  - story: enroll student full flow
+    steps:
+      - intent: enroll_student
+      - action: enroll_form
+      - active_loop: enroll_form
+      - active_loop: null
+      - slot_was_set:
+          - requested_slot: null
+      - action: action_enroll_student     # updates + sends buttons itself
+
+  - story: goodbye
+    steps:
+      - intent: goodbye
+      - action: utter_goodbye

@@ -1,0 +1,260 @@
+# ============================================================
+# RASA DOMAIN
+# ============================================================
+version: "3.1"
+
+intents:
+  - greet
+  - goodbye
+  - help
+  - show_students
+  - show_courses
+  - add_student
+  - add_course
+  - enroll_student
+  - affirm
+  - deny
+  - provide_name
+  - provide_email
+  - provide_age
+  - provide_course_name
+  - provide_course_code
+  - provide_credits
+  - provide_instructor
+  - provide_capacity
+  - provide_student_id
+  - provide_course_id
+
+entities:
+  - student_name
+  - student_email
+  - student_age
+  - course_name
+  - course_code
+  - credits
+  - instructor
+  - capacity
+  - student_id
+  - course_id
+
+# ──────────────────────────────────────────────
+# SLOTS — from_text only, no intent condition
+# ──────────────────────────────────────────────
+slots:
+  student_name:
+    type: text
+    mappings:
+      - type: from_text
+        conditions:
+          - active_loop: add_student_form
+            requested_slot: student_name
+
+  student_email:
+    type: text
+    mappings:
+      - type: from_text
+        conditions:
+          - active_loop: add_student_form
+            requested_slot: student_email
+
+  student_age:
+    type: float
+    mappings:
+      - type: from_text
+        conditions:
+          - active_loop: add_student_form
+            requested_slot: student_age
+
+  course_name:
+    type: text
+    mappings:
+      - type: from_text
+        conditions:
+          - active_loop: add_course_form
+            requested_slot: course_name
+
+  course_code:
+    type: text
+    mappings:
+      - type: from_text
+        conditions:
+          - active_loop: add_course_form
+            requested_slot: course_code
+
+  credits:
+    type: float
+    mappings:
+      - type: from_text
+        conditions:
+          - active_loop: add_course_form
+            requested_slot: credits
+
+  instructor:
+    type: text
+    mappings:
+      - type: from_text
+        conditions:
+          - active_loop: add_course_form
+            requested_slot: instructor
+
+  capacity:
+    type: float
+    mappings:
+      - type: from_text
+        conditions:
+          - active_loop: add_course_form
+            requested_slot: capacity
+
+  enroll_student_id:
+    type: text
+    mappings:
+      - type: from_text
+        conditions:
+          - active_loop: enroll_form
+            requested_slot: enroll_student_id
+
+  enroll_course_id:
+    type: text
+    mappings:
+      - type: from_text
+        conditions:
+          - active_loop: enroll_form
+            requested_slot: enroll_course_id
+
+# ──────────────────────────────────────────────
+# RESPONSES
+# ──────────────────────────────────────────────
+responses:
+  utter_greet:
+    - text: "👋 Hello! I'm the Student Management Bot.\nWhat would you like to do?"
+      buttons:
+        - title: "👥 Show Students"
+          payload: "/show_students"
+        - title: "📚 Show Courses"
+          payload: "/show_courses"
+        - title: "➕ Add Student"
+          payload: "/add_student"
+        - title: "📖 Add Course"
+          payload: "/add_course"
+        - title: "🔗 Enroll Student"
+          payload: "/enroll_student"
+        - title: "❌ Exit"
+          payload: "/goodbye"
+
+  utter_goodbye:
+    - text: "👋 Goodbye! Have a great day."
+
+  utter_help:
+    - text: "Here's what I can do:"
+      buttons:
+        - title: "👥 Show Students"
+          payload: "/show_students"
+        - title: "📚 Show Courses"
+          payload: "/show_courses"
+        - title: "➕ Add Student"
+          payload: "/add_student"
+        - title: "📖 Add Course"
+          payload: "/add_course"
+        - title: "🔗 Enroll Student"
+          payload: "/enroll_student"
+        - title: "❌ Exit"
+          payload: "/goodbye"
+
+  utter_ask_student_name:
+    - text: "📝 What is the student's full name?"
+
+  utter_ask_student_email:
+    - text: "📧 What is the student's email address?"
+
+  utter_ask_student_age:
+    - text: "🎂 What is the student's age?"
+
+  utter_ask_course_name:
+    - text: "📚 What is the course name?"
+
+  utter_ask_course_code:
+    - text: "🔑 What is the course code? (e.g. CS101)"
+
+  utter_ask_credits:
+    - text: "⭐ How many credits does this course have?"
+
+  utter_ask_instructor:
+    - text: "👨‍🏫 Who is the instructor?"
+
+  utter_ask_capacity:
+    - text: "👥 What is the maximum capacity?"
+
+  utter_ask_enroll_student_id:
+    - text: "👤 Please enter the Student ID:"
+
+  utter_ask_enroll_course_id:
+    - text: "📚 Please enter the Course ID:"
+
+  utter_fallback:
+    - text: "🤔 I didn't understand that. Here's what I can help with:"
+      buttons:
+        - title: "👥 Show Students"
+          payload: "/show_students"
+        - title: "📚 Show Courses"
+          payload: "/show_courses"
+        - title: "➕ Add Student"
+          payload: "/add_student"
+        - title: "📖 Add Course"
+          payload: "/add_course"
+        - title: "🔗 Enroll Student"
+          payload: "/enroll_student"
+        - title: "❌ Exit"
+          payload: "/goodbye"
+
+  utter_main_menu:
+    - text: "What would you like to do next?"
+      buttons:
+        - title: "👥 Show Students"
+          payload: "/show_students"
+        - title: "📚 Show Courses"
+          payload: "/show_courses"
+        - title: "➕ Add Student"
+          payload: "/add_student"
+        - title: "📖 Add Course"
+          payload: "/add_course"
+        - title: "🔗 Enroll Student"
+          payload: "/enroll_student"
+        - title: "❌ Exit"
+          payload: "/goodbye"
+
+# ──────────────────────────────────────────────
+# FORMS
+# ──────────────────────────────────────────────
+forms:
+  add_student_form:
+    required_slots:
+      - student_name
+      - student_email
+      - student_age
+
+  add_course_form:
+    required_slots:
+      - course_name
+      - course_code
+      - credits
+      - instructor
+      - capacity
+
+  enroll_form:
+    required_slots:
+      - enroll_student_id
+      - enroll_course_id
+
+# ──────────────────────────────────────────────
+# ACTIONS
+# ──────────────────────────────────────────────
+actions:
+  - action_show_students
+  - action_show_courses
+  - action_add_student
+  - action_add_course
+  - action_enroll_student
+  - action_reset_slots
+  - validate_add_student_form
+  - validate_add_course_form
+  - validate_enroll_form

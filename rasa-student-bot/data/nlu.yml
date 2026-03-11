@@ -1,0 +1,291 @@
+# ============================================================
+# RASA NLU Training Data
+# ============================================================
+version: "3.1"
+
+nlu:
+
+  # ── GREET ──────────────────────────────────────────────
+  - intent: greet
+    examples: |
+      - hi
+      - hello
+      - hey
+      - good morning
+      - good evening
+      - greetings
+      - hi there
+      - what's up
+      - howdy
+
+  # ── GOODBYE ────────────────────────────────────────────
+  - intent: goodbye
+    examples: |
+      - bye
+      - goodbye
+      - exit
+      - quit
+      - close
+      - stop
+      - end session
+      - see you later
+      - I'm done
+
+  # ── HELP ───────────────────────────────────────────────
+  - intent: help
+    examples: |
+      - help
+      - what can you do
+      - show menu
+      - options
+      - commands
+      - what are your features
+      - how do I use this
+
+  # ── SHOW STUDENTS ──────────────────────────────────────
+  - intent: show_students
+    examples: |
+      - show students
+      - list students
+      - view all students
+      - display students
+      - get students
+      - who are the students
+      - show me all students
+      - students list
+      - fetch students
+      - all students
+
+  # ── SHOW COURSES ───────────────────────────────────────
+  - intent: show_courses
+    examples: |
+      - show courses
+      - list courses
+      - view all courses
+      - display courses
+      - get courses
+      - what courses are available
+      - show me all courses
+      - courses list
+      - fetch courses
+      - all courses
+
+  # ── ADD STUDENT ────────────────────────────────────────
+  - intent: add_student
+    examples: |
+      - add student
+      - new student
+      - register student
+      - create student
+      - add a new student
+      - I want to add a student
+      - register a new student
+      - insert student
+      - create new student record
+
+  # ── ADD COURSE ─────────────────────────────────────────
+  - intent: add_course
+    examples: |
+      - add course
+      - new course
+      - create course
+      - register course
+      - add a new course
+      - I want to add a course
+      - insert course
+      - create new course
+      - new subject
+
+  # ── ENROLL STUDENT ─────────────────────────────────────
+  - intent: enroll_student
+    examples: |
+      - enroll student
+      - add student to course
+      - assign course to student
+      - register student in course
+      - enroll in course
+      - assign student to course
+      - student course enrollment
+      - sign up student for course
+      - add to course
+
+  # ── PROVIDE NAME ───────────────────────────────────────
+  - intent: provide_name
+    examples: |
+      - Devendra Reddy
+      - Alice Johnson
+      - Bob Smith
+      - John Doe
+      - Mary Jane
+      - Ravi Kumar
+      - Priya Sharma
+      - Sai Krishna
+      - Arjun Mehta
+      - Suresh Babu
+      - Neha Singh
+      - Amit Patel
+      - Rahul Gupta
+      - Sneha Reddy
+      - Vijay Kumar
+      - my name is Devendra
+      - my name is John
+      - name is Alice
+      - call me Bob
+      - I am Ravi Kumar
+
+  # ── PROVIDE EMAIL ──────────────────────────────────────
+  - intent: provide_email
+    examples: |
+      - devendra@gmail.com
+      - test@test.com
+      - alice@university.edu
+      - bob.smith@college.ac
+      - john.doe@campus.org
+      - user@example.com
+      - ravi@uni.edu
+      - priya@college.com
+      - sai@gmail.com
+      - arjun@hotmail.com
+      - neha@yahoo.com
+      - amit@outlook.com
+      - rahul@uni.edu
+      - sneha@college.org
+      - vijay@campus.edu
+
+  # ── PROVIDE AGE ────────────────────────────────────────
+  - intent: provide_age
+    examples: |
+      - 18
+      - 19
+      - 20
+      - 21
+      - 22
+      - 23
+      - 24
+      - 25
+      - 26
+      - 27
+      - 28
+      - 30
+
+  # ── PROVIDE COURSE NAME ────────────────────────────────
+  - intent: provide_course_name
+    examples: |
+      - Machine Learning
+      - Introduction to Computer Science
+      - Data Structures
+      - Database Systems
+      - Artificial Intelligence
+      - Web Development
+      - Python Programming
+      - Software Engineering
+      - Operating Systems
+      - Computer Networks
+      - Cloud Computing
+      - Cyber Security
+      - Mobile Application Development
+      - Deep Learning
+      - Natural Language Processing
+
+  # ── PROVIDE COURSE CODE ────────────────────────────────
+  - intent: provide_course_code
+    examples: |
+      - CS101
+      - CS201
+      - CS301
+      - CS401
+      - CS501
+      - IT101
+      - IT201
+      - MATH201
+      - MATH301
+      - EC101
+      - ME101
+      - CS601
+      - IT301
+      - CS701
+      - AI101
+
+  # ── PROVIDE CREDITS ────────────────────────────────────
+  - intent: provide_credits
+    examples: |
+      - 1
+      - 2
+      - 3
+      - 4
+      - 5
+
+  # ── PROVIDE INSTRUCTOR ─────────────────────────────────
+  - intent: provide_instructor
+    examples: |
+      - Prof. Brown
+      - Dr. Smith
+      - Prof. Adams
+      - Dr. Johnson
+      - Prof. Wilson
+      - Dr. Reddy
+      - Prof. Kumar
+      - Dr. Sharma
+      - Prof. Patel
+      - Dr. Gupta
+      - Prof. Singh
+      - Dr. Mehta
+      - Prof. Rao
+      - Dr. Verma
+      - Prof. Nair
+
+  # ── PROVIDE CAPACITY ───────────────────────────────────
+  - intent: provide_capacity
+    examples: |
+      - 10
+      - 15
+      - 20
+      - 25
+      - 30
+      - 35
+      - 40
+      - 50
+      - 60
+      - 100
+
+  # ── PROVIDE STUDENT ID ─────────────────────────────────
+  - intent: provide_student_id
+    examples: |
+      - 69afa6d90be0f180d64c36c1
+      - 69afa6d90be0f180d64c36c2
+      - 69afa6d90be0f180d64c36c3
+      - 69afa6d90be0f180d64c36c4
+      - 507f1f77bcf86cd799439011
+      - 507f1f77bcf86cd799439012
+      - 507f1f77bcf86cd799439013
+
+  # ── PROVIDE COURSE ID ──────────────────────────────────
+  - intent: provide_course_id
+    examples: |
+      - 69afa6d90be0f180d64c36c5
+      - 69afa6d90be0f180d64c36c6
+      - 69afa6d90be0f180d64c36c7
+      - 69afa6d90be0f180d64c36c8
+      - 507f1f77bcf86cd799439014
+      - 507f1f77bcf86cd799439015
+      - 507f1f77bcf86cd799439016
+
+  # ── AFFIRM / DENY ──────────────────────────────────────
+  - intent: affirm
+    examples: |
+      - yes
+      - yeah
+      - correct
+      - ok
+      - sure
+      - sounds good
+      - confirmed
+
+  - intent: deny
+    examples: |
+      - no
+      - nope
+      - cancel
+      - not now
+      - stop
+      - abort

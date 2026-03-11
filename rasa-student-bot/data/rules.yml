@@ -1,0 +1,145 @@
+# ============================================================
+# RASA RULES
+# ============================================================
+version: "3.1"
+
+rules:
+
+  # ── GREET ──────────────────────────────────────────────
+  - rule: Say hello always
+    steps:
+      - intent: greet
+      - action: utter_greet
+
+  # ── GOODBYE ────────────────────────────────────────────
+  - rule: Exit session
+    steps:
+      - intent: goodbye
+      - action: utter_goodbye
+
+  # ── HELP ───────────────────────────────────────────────
+  - rule: Show help
+    steps:
+      - intent: help
+      - action: utter_help
+
+  # ── FALLBACK ───────────────────────────────────────────
+  - rule: Ask rephrase on low confidence
+    steps:
+      - intent: nlu_fallback
+      - action: utter_fallback
+
+  # ── SHOW STUDENTS ──────────────────────────────────────
+  - rule: Show students
+    steps:
+      - intent: show_students
+      - action: action_show_students
+
+  # ── SHOW COURSES ───────────────────────────────────────
+  - rule: Show courses
+    steps:
+      - intent: show_courses
+      - action: action_show_courses
+
+  # ── ADD STUDENT FORM ───────────────────────────────────
+  - rule: Activate add_student_form
+    steps:
+      - intent: add_student
+      - action: add_student_form
+      - active_loop: add_student_form
+
+  - rule: Submit add_student_form
+    condition:
+      - active_loop: add_student_form
+    steps:
+      - action: add_student_form
+      - active_loop: null
+      - slot_was_set:
+          - requested_slot: null
+      - action: action_add_student
+
+  - rule: Keep add_student_form active on fallback
+    condition:
+      - active_loop: add_student_form
+    steps:
+      - intent: nlu_fallback
+      - action: add_student_form
+      - active_loop: add_student_form
+
+  # ── ADD COURSE FORM ────────────────────────────────────
+  - rule: Activate add_course_form
+    steps:
+      - intent: add_course
+      - action: add_course_form
+      - active_loop: add_course_form
+
+  - rule: Submit add_course_form
+    condition:
+      - active_loop: add_course_form
+    steps:
+      - action: add_course_form
+      - active_loop: null
+      - slot_was_set:
+          - requested_slot: null
+      - action: action_add_course
+
+  - rule: Keep add_course_form active on fallback
+    condition:
+      - active_loop: add_course_form
+    steps:
+      - intent: nlu_fallback
+      - action: add_course_form
+      - active_loop: add_course_form
+
+  # ── ENROLL FORM ────────────────────────────────────────
+  - rule: Activate enroll_form
+    steps:
+      - intent: enroll_student
+      - action: enroll_form
+      - active_loop: enroll_form
+
+  - rule: Submit enroll_form
+    condition:
+      - active_loop: enroll_form
+    steps:
+      - action: enroll_form
+      - active_loop: null
+      - slot_was_set:
+          - requested_slot: null
+      - action: action_enroll_student
+
+  - rule: Keep enroll_form active on fallback
+    condition:
+      - active_loop: enroll_form
+    steps:
+      - intent: nlu_fallback
+      - action: enroll_form
+      - active_loop: enroll_form
+
+  # ── CANCEL ANY FORM ────────────────────────────────────
+  - rule: Cancel add_student_form
+    condition:
+      - active_loop: add_student_form
+    steps:
+      - intent: deny
+      - action: action_deactivate_loop
+      - active_loop: null
+      - action: utter_main_menu
+
+  - rule: Cancel add_course_form
+    condition:
+      - active_loop: add_course_form
+    steps:
+      - intent: deny
+      - action: action_deactivate_loop
+      - active_loop: null
+      - action: utter_main_menu
+
+  - rule: Cancel enroll_form
+    condition:
+      - active_loop: enroll_form
+    steps:
+      - intent: deny
+      - action: action_deactivate_loop
+      - active_loop: null
+      - action: utter_main_menu
