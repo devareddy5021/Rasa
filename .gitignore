@@ -8,3 +8,8 @@ __pycache__/
 
 # Environment files
 .env
+
+rasa-student-bot/models/
+rasa-student-bot/.rasa/
+rasa-student-bot/.env
+rasa-student-bot/.env.example
